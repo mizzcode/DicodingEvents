@@ -1,7 +1,6 @@
 package com.misbah.dicodingevents.ui.upcoming
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,8 +62,6 @@ class UpcomingFragment : Fragment() {
         val adapter = EventAdapter()
         adapter.submitList(data)
 
-        Log.d("UpcomingFragment", "setEventData: $data")
-
         binding.rvUpcoming.adapter = adapter
     }
 
@@ -80,5 +77,4 @@ class UpcomingFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

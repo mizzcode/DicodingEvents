@@ -58,3 +58,15 @@ data class ListEventsItem(
 	@field:SerializedName("category")
 	val category: String
 )
+
+data class Event(
+
+	@field:SerializedName("error")
+	val error: Boolean,
+
+	@field:SerializedName("message")
+	val message: String,
+
+	@field:SerializedName("event")
+	val event: ListEventsItem
+)

@@ -5,4 +5,10 @@
     <string name="title_finished">Finished</string>
     <string name="title">Title Event</string>
     <string name="description">Deskripsi</string>
+    <string name="summary">Summary</string>
+    <string name="image_event_desc">Gambar Event</string>
+    <string name="terbuka_hingga">Terbuka Hingga:</string>
+    <string name="sisa_kuota">Sisa Kuota:</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="register">Register</string>
 </resources>
