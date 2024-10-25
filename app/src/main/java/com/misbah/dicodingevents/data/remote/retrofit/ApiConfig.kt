@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.data.retrofit
+package com.misbah.dicodingevents.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

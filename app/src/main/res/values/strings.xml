@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">DicodingEvents</string>
+    <string name="app_name">Dicoding Events</string>
+    <string name="upcoming_desc">Recommendation event for you!</string>
     <string name="title_home">Home</string>
     <string name="title_upcoming">Upcoming</string>
     <string name="title_finished">Finished</string>
@@ -11,4 +12,7 @@
     <string name="sisa_kuota">Sisa Kuota:</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="register">Register</string>
+    <string name="favorite">Favorite</string>
+    <string name="events_finished">Events Finished</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
