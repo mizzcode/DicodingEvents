@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("events")
-    fun getEvents(@Query("active") active: Int): EventResponse
+    suspend fun getEvents(@Query("active") active: Int): EventResponse
 }

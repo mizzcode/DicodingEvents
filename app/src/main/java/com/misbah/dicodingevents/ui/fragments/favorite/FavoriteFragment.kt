@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.ui.favorite
+package com.misbah.dicodingevents.ui.fragments.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

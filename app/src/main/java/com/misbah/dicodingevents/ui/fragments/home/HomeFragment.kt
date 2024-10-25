@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.ui.home
+package com.misbah.dicodingevents.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -10,8 +10,11 @@ import com.misbah.dicodingevents.data.local.entity.EventEntity
 
 @Dao
 interface EventDao {
-    @Query("SELECT * FROM events ORDER BY beginTime DESC")
-    fun getEvents(): LiveData<List<EventEntity>>
+    @Query("SELECT * FROM events WHERE isActive = 1")
+    fun getEventsActive(): LiveData<List<EventEntity>>
+
+    @Query("SELECT * FROM events WHERE isActive = 0")
+    fun getEventsFinished(): LiveData<List<EventEntity>>
 
     @Query("SELECT * FROM events where isFavorite = 1")
     fun getFavoriteEvents(): LiveData<List<EventEntity>>

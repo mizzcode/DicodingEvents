@@ -23,5 +23,6 @@ class EventEntity (
     val link: String? = null,
     val imageLogo: String? = null,
     val mediaCover: String? = null,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    var isActive: Boolean
 )

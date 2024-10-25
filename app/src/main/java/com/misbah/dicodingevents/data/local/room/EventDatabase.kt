@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.misbah.dicodingevents.data.local.entity.EventEntity
 
-@Database(entities = [EventEntity::class], version = 1, exportSchema = false)
+@Database(entities = [EventEntity::class], version = 2, exportSchema = false)
 abstract class EventDatabase : RoomDatabase() {
     abstract fun eventDao(): EventDao
 
@@ -19,7 +19,9 @@ abstract class EventDatabase : RoomDatabase() {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
                     EventDatabase::class.java, "Event.db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
             }
     }
 }

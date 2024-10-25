@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 import com.misbah.dicodingevents.data.local.entity.EventEntity
 import com.misbah.dicodingevents.ui.EventAdapter.MyViewHolder
 import com.misbah.dicodingevents.databinding.ItemRowEventsBinding
-import com.misbah.dicodingevents.ui.DetailActivity.Companion.EXTRA_ID
+import com.misbah.dicodingevents.ui.activity.DetailActivity
+import com.misbah.dicodingevents.ui.activity.DetailActivity.Companion.EXTRA_ID
 
 class EventAdapter : ListAdapter<EventEntity, MyViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.ui.finished
+package com.misbah.dicodingevents.ui.fragments.finished
 
 import android.os.Bundle
 import android.util.Log

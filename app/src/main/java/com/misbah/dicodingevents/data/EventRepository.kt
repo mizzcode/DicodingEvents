@@ -16,6 +16,7 @@ class EventRepository private constructor(private val apiService: ApiService, pr
         try {
             val response = apiService.getEvents(1)
             val events = response.listEvents
+            val isActive = true
             val eventList = events.map { event ->
                 val isFavorite = eventDao.isEventFavorite(event.name)
 
@@ -33,18 +34,19 @@ class EventRepository private constructor(private val apiService: ApiService, pr
                     event.link,
                     event.imageLogo,
                     event.mediaCover,
-                    isFavorite
+                    isFavorite,
+                    isActive
                 )
             }
             // insert to room db
             eventDao.insertEvents(eventList)
-            // get all event active from room db
-            val localData: LiveData<Result<List<EventEntity>>> = eventDao.getEvents().map { Result.Success(it) }
-            emitSource(localData)
         } catch (e: Exception) {
             Log.d("EventRepository", "getEventsActive: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
         }
+        // get all event active from room db
+        val localData: LiveData<Result<List<EventEntity>>> = eventDao.getEventsActive().map { Result.Success(it) }
+        emitSource(localData)
     }
 
     fun getEventsFinished(): LiveData<Result<List<EventEntity>>> = liveData {
@@ -53,6 +55,7 @@ class EventRepository private constructor(private val apiService: ApiService, pr
         try {
             val response = apiService.getEvents(0)
             val events = response.listEvents
+            val isActive = false
             val eventList = events.map { event ->
                 val isFavorite = eventDao.isEventFavorite(event.name)
 
@@ -70,18 +73,19 @@ class EventRepository private constructor(private val apiService: ApiService, pr
                     event.link,
                     event.imageLogo,
                     event.mediaCover,
-                    isFavorite
+                    isFavorite,
+                    isActive
                 )
             }
             // insert to room db
             eventDao.insertEvents(eventList)
-            // get all event finished from room db
-            val localData: LiveData<Result<List<EventEntity>>> = eventDao.getEvents().map { Result.Success(it) }
-            emitSource(localData)
         } catch (e: Exception) {
             Log.d("EventRepository", "getEventsFinished: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
         }
+        // get all event finished from room db
+        val localData: LiveData<Result<List<EventEntity>>> = eventDao.getEventsFinished().map { Result.Success(it) }
+        emitSource(localData)
     }
 
     fun getEventById(id: Int): LiveData<EventEntity> {
