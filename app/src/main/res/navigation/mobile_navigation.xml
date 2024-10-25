@@ -22,4 +22,10 @@
         android:name="com.misbah.dicodingevents.ui.finished.FinishedFragment"
         android:label="@string/title_finished"
         tools:layout="@layout/fragment_finished" />
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.misbah.dicodingevents.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>
