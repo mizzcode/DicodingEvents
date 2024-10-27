@@ -50,6 +50,12 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.getIntExtra(EXTRA_ID, 0)
 
         eventViewModel.getEventById(id).observe(this) { event ->
+            if (event.isFavorite) {
+                binding.fabFav.setImageResource(R.drawable.baseline_favorite_24)
+            } else {
+                binding.fabFav.setImageResource(R.drawable.baseline_favorite_border_24)
+            }
+
             Glide.with(this@DetailActivity)
                 .load(event.imageLogo)
                 .listener(object : RequestListener<Drawable> {
@@ -77,6 +83,18 @@ class DetailActivity : AppCompatActivity() {
                 })
                 .into(binding.imgEventPhoto)
 
+            binding.fabFav.setOnClickListener {
+                if (event.isFavorite) {
+                    binding.fabFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                    eventViewModel.deleteEventFromFavorite(event)
+                    Toast.makeText(this@DetailActivity, "Berhasil menghapus event ini dari favorite", Toast.LENGTH_SHORT).show()
+                } else {
+                    binding.fabFav.setImageResource(R.drawable.baseline_favorite_24)
+                    eventViewModel.saveEventToFavorite(event)
+                    Toast.makeText(this@DetailActivity, "Berhasil menambahkan event ini ke favorite", Toast.LENGTH_SHORT).show()
+                }
+            }
+
             binding.btnCategory.text = event.category
             binding.tvTitleEvent.text = event.title
             binding.tvOwner.text = "Diselenggarakan oleh: ${event.ownerName}"
@@ -95,18 +113,6 @@ class DetailActivity : AppCompatActivity() {
                 val link = event.link
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
-            }
-
-            binding.fabFav.setOnClickListener {
-                if (event.isFavorite) {
-                    binding.fabFav.setImageResource(R.drawable.baseline_favorite_border_24)
-                    eventViewModel.deleteEventFromFavorite(event)
-                    Toast.makeText(this@DetailActivity, "Berhasil menghapus event ini dari favorite", Toast.LENGTH_SHORT).show()
-                } else {
-                    binding.fabFav.setImageResource(R.drawable.baseline_favorite_24)
-                    eventViewModel.saveEventToFavorite(event)
-                    Toast.makeText(this@DetailActivity, "Berhasil menambahkan event ini ke favorite", Toast.LENGTH_SHORT).show()
-                }
             }
         }
     }

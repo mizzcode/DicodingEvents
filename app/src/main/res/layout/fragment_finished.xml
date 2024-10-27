@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.finished.FinishedFragment">
+    tools:context=".ui.fragments.FinishedFragment">
 
     <TextView
         android:id="@+id/text_finished"

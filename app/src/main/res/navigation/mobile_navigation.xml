@@ -3,29 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.misbah.dicodingevents.ui.fragments.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@+id/navigation_upcoming">
 
     <fragment
         android:id="@+id/navigation_upcoming"
-        android:name="com.misbah.dicodingevents.ui.fragments.upcoming.UpcomingFragment"
+        android:name="com.misbah.dicodingevents.ui.fragments.UpcomingFragment"
         android:label="@string/title_upcoming"
         tools:layout="@layout/fragment_upcoming" />
 
     <fragment
         android:id="@+id/navigation_finished"
-        android:name="com.misbah.dicodingevents.ui.fragments.finished.FinishedFragment"
+        android:name="com.misbah.dicodingevents.ui.fragments.FinishedFragment"
         android:label="@string/title_finished"
         tools:layout="@layout/fragment_finished" />
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.misbah.dicodingevents.ui.fragments.favorite.FavoriteFragment"
+        android:name="com.misbah.dicodingevents.ui.fragments.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.misbah.dicodingevents.ui.fragments.SettingFragment"
+        android:label="SettingFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.ui.fragments.upcoming
+package com.misbah.dicodingevents.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -43,7 +43,7 @@ class UpcomingFragment : Fragment() {
         val eventAdapter = EventAdapter()
 
         binding.textUpcoming.text = getString(R.string.app_name)
-        binding.textUpcomingDesc.text = getString(R.string.upcoming_desc)
+        binding.textUpcomingDesc.text = getString(R.string.recommendation_event)
 
         eventViewModel.getEventsActive().observe(viewLifecycleOwner) { result ->
             if (result != null) {
@@ -58,7 +58,7 @@ class UpcomingFragment : Fragment() {
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Tidak ada koneksi internet", Toast.LENGTH_SHORT).show()
                         Log.d("TAG", "onViewCreated: ${result.error}")
                     }
                 }

@@ -1,4 +1,4 @@
-package com.misbah.dicodingevents.ui.fragments.finished
+package com.misbah.dicodingevents.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -59,7 +59,7 @@ class FinishedFragment : Fragment() {
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Tidak ada koneksi internet", Toast.LENGTH_SHORT).show()
                         Log.d("TAG", "onViewCreated: ${result.error}")
                     }
                 }
