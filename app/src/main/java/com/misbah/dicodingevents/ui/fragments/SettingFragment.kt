@@ -23,8 +23,6 @@ class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
 
-    private var isToastShown = false
-
     private lateinit var workManager: WorkManager
     private lateinit var dailyReminderWorkRequest: PeriodicWorkRequest
 
@@ -58,7 +56,6 @@ class SettingFragment : Fragment() {
 
         mainViewModel.getReminder().observe(viewLifecycleOwner) { isDailyReminderActive: Boolean ->
             binding.switchNotification.isChecked = isDailyReminderActive
-            isToastShown = isDailyReminderActive
         }
 
         binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
