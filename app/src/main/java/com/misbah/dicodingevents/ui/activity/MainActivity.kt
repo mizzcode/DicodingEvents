@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -18,10 +17,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.ActivityMainBinding
 import com.misbah.dicodingevents.ui.MainViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
+    private val mainViewModel: MainViewModel by inject()
     private lateinit var sharedPreferences: SharedPreferences
 
     private val requestPermissionLauncher =
@@ -67,8 +67,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        val mainViewModel: MainViewModel by viewModels()
 
         mainViewModel.getTheme().observe(this@MainActivity) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

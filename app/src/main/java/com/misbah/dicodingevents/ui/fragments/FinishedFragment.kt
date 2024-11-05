@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.data.Result
 import com.misbah.dicodingevents.databinding.FragmentFinishedBinding
 import com.misbah.dicodingevents.ui.EventAdapter
 import com.misbah.dicodingevents.ui.EventViewModel
+import org.koin.android.ext.android.inject
 
 class FinishedFragment : Fragment() {
-
+    private val eventViewModel: EventViewModel by inject()
     private var _binding: FragmentFinishedBinding? = null
 
     // This property is only valid between onCreateView and
@@ -36,8 +36,6 @@ class FinishedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val eventViewModel: EventViewModel by viewModels()
 
         val eventAdapter = EventAdapter()
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.misbah.dicodingevents.data.local.entity.EventEntity
 import com.misbah.dicodingevents.ui.EventAdapter.MyViewHolder
 import com.misbah.dicodingevents.databinding.ItemRowEventsBinding
@@ -33,6 +34,7 @@ class EventAdapter : ListAdapter<EventEntity, MyViewHolder>(DIFF_CALLBACK) {
             binding.tvEventSummary.text = event.summary
             Glide.with(itemView.context)
                 .load(event.mediaCover)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // Menyimpan gambar di disk cache
                 .into(binding.imgEventPhoto)
 
             itemView.setOnClickListener {
