@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.data.Result
 import com.misbah.dicodingevents.databinding.FragmentUpcomingBinding
 import com.misbah.dicodingevents.ui.EventAdapter
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
+import org.koin.android.ext.android.inject
 
 class UpcomingFragment : Fragment() {
     private var _binding: FragmentUpcomingBinding? = null
+    private val eventViewModel: EventViewModel by inject()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,9 +36,6 @@ class UpcomingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val eventViewModel: EventViewModel by viewModels { factory }
 
         val eventAdapter = EventAdapter()
 

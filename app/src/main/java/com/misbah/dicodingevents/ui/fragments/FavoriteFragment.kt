@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.FragmentFavoriteBinding
 import com.misbah.dicodingevents.ui.EventAdapter
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
+import org.koin.android.ext.android.inject
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+    private val eventViewModel: EventViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +29,6 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val eventViewModel: EventViewModel by viewModels { factory }
 
         val eventAdapter = EventAdapter()
 

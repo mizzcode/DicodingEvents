@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import androidx.fragment.app.viewModels
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
@@ -15,13 +14,14 @@ import androidx.work.WorkManager
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.FragmentSettingBinding
 import com.misbah.dicodingevents.ui.MainViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
 import com.misbah.dicodingevents.workmanager.DailyReminderWorker
+import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
 
 class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
+    private val mainViewModel: MainViewModel by inject()
 
     private lateinit var workManager: WorkManager
     private lateinit var dailyReminderWorkRequest: PeriodicWorkRequest
@@ -40,9 +40,6 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         workManager = WorkManager.getInstance(requireContext())
-
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val mainViewModel: MainViewModel by viewModels { factory }
 
         binding.textSetting.text = getString(R.string.setting)
         binding.textDarkMode.text = getString(R.string.dark_mode)

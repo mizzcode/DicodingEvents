@@ -10,20 +10,20 @@ import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.ActivityDetailBinding
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
+import org.koin.android.ext.android.inject
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -44,20 +44,16 @@ class DetailActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(this@DetailActivity)
-        val eventViewModel: EventViewModel by viewModels { factory }
+        val eventViewModel: EventViewModel by inject()
 
         val id = intent.getIntExtra(EXTRA_ID, 0)
 
         eventViewModel.getEventById(id).observe(this) { event ->
-            if (event.isFavorite) {
-                binding.fabFav.setImageResource(R.drawable.baseline_favorite_24)
-            } else {
-                binding.fabFav.setImageResource(R.drawable.baseline_favorite_border_24)
-            }
+            binding.fabFav.setImageResource(if (event.isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24)
 
             Glide.with(this@DetailActivity)
                 .load(event.imageLogo)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // Menyimpan gambar di disk cache
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
                         e: GlideException?,
@@ -66,6 +62,7 @@ class DetailActivity : AppCompatActivity() {
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this@DetailActivity, "Tidak ada koneksi internet", Toast.LENGTH_SHORT).show()
                         return false
                     }
 

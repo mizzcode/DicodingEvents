@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-class SettingPreferences private constructor(private val dataStore: DataStore<Preferences>){
+class SettingPreferences(private val dataStore: DataStore<Preferences>){
     private val THEME_KEY = booleanPreferencesKey("theme_setting")
     private val REMINDER_KEY = booleanPreferencesKey("reminder_setting")
 
@@ -39,16 +39,16 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
         }
     }
 
-    companion object {
-        @Volatile
-        private var INSTANCE: SettingPreferences? = null
-
-        fun getInstance(dataStore: DataStore<Preferences>): SettingPreferences {
-            return INSTANCE ?: synchronized(this) {
-                val instance = SettingPreferences(dataStore)
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
+//    companion object {
+//        @Volatile
+//        private var INSTANCE: SettingPreferences? = null
+//
+//        fun getInstance(dataStore: DataStore<Preferences>): SettingPreferences {
+//            return INSTANCE ?: synchronized(this) {
+//                val instance = SettingPreferences(dataStore)
+//                INSTANCE = instance
+//                instance
+//            }
+//        }
+//    }
 }
