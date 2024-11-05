@@ -15,7 +15,6 @@ import androidx.work.WorkManager
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.FragmentSettingBinding
 import com.misbah.dicodingevents.ui.MainViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
 import com.misbah.dicodingevents.workmanager.DailyReminderWorker
 import java.util.concurrent.TimeUnit
 
@@ -41,8 +40,7 @@ class SettingFragment : Fragment() {
 
         workManager = WorkManager.getInstance(requireContext())
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val mainViewModel: MainViewModel by viewModels { factory }
+        val mainViewModel: MainViewModel by viewModels()
 
         binding.textSetting.text = getString(R.string.setting)
         binding.textDarkMode.text = getString(R.string.dark_mode)

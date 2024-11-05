@@ -8,7 +8,7 @@ import com.misbah.dicodingevents.data.local.entity.EventEntity
 import com.misbah.dicodingevents.data.local.room.EventDao
 import com.misbah.dicodingevents.data.remote.retrofit.ApiService
 
-class EventRepository private constructor(private val apiService: ApiService, private val eventDao: EventDao) {
+class EventRepository(private val apiService: ApiService, private val eventDao: EventDao) {
 
     fun getEventsActive(): LiveData<Result<List<EventEntity>>> = liveData {
         emit(Result.Loading)
@@ -99,16 +99,5 @@ class EventRepository private constructor(private val apiService: ApiService, pr
     suspend fun setEventFavorite(event: EventEntity, favoriteState: Boolean) {
         event.isFavorite = favoriteState
         eventDao.updateEvent(event)
-    }
-
-    companion object {
-        @Volatile
-        private var instance: EventRepository? = null
-
-        fun getInstance(apiService: ApiService, eventDao: EventDao): EventRepository {
-            return instance ?: synchronized(this) {
-                instance ?: EventRepository(apiService, eventDao)
-            }.also { instance = it }
-        }
     }
 }

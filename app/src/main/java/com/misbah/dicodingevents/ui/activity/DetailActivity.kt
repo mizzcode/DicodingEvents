@@ -23,7 +23,6 @@ import com.bumptech.glide.request.target.Target
 import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.ActivityDetailBinding
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -44,8 +43,7 @@ class DetailActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(this@DetailActivity)
-        val eventViewModel: EventViewModel by viewModels { factory }
+        val eventViewModel: EventViewModel by viewModels()
 
         val id = intent.getIntExtra(EXTRA_ID, 0)
 

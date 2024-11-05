@@ -11,7 +11,6 @@ import com.misbah.dicodingevents.R
 import com.misbah.dicodingevents.databinding.FragmentFavoriteBinding
 import com.misbah.dicodingevents.ui.EventAdapter
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
@@ -30,8 +29,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val eventViewModel: EventViewModel by viewModels { factory }
+        val eventViewModel: EventViewModel by viewModels()
 
         val eventAdapter = EventAdapter()
 

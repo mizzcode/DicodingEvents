@@ -14,7 +14,6 @@ import com.misbah.dicodingevents.data.Result
 import com.misbah.dicodingevents.databinding.FragmentUpcomingBinding
 import com.misbah.dicodingevents.ui.EventAdapter
 import com.misbah.dicodingevents.ui.EventViewModel
-import com.misbah.dicodingevents.ui.ViewModelFactory
 
 class UpcomingFragment : Fragment() {
     private var _binding: FragmentUpcomingBinding? = null
@@ -37,8 +36,7 @@ class UpcomingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
-        val eventViewModel: EventViewModel by viewModels { factory }
+        val eventViewModel: EventViewModel by viewModels()
 
         val eventAdapter = EventAdapter()
 
